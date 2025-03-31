@@ -27,6 +27,7 @@ export function App() {
               id='input'
               labelText='Task'
               title='TITULO'
+              placeholder='Digite algo'
             />
           </div>
           <div className='formRow'>
