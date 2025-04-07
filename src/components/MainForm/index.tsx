@@ -7,20 +7,13 @@ import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 export function MainForm() {
   const { state, setState } = useTaskContext();
 
-  function handleClick() {
-    setState(prevState => {
-      return {
-        ...prevState,
-        formattedSecondsRemaining: '10:10',
-      };
-    });
+  function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log('deu certo!');
   }
 
   return (
-    <form action='' className='form'>
-      <button onClick={handleClick} type='button'>
-        Clicar
-      </button>
+    <form onSubmit={handleCreateNewTask} action='' className='form'>
       <div className='formRow'>
         <DefaultInput
           type='text'
