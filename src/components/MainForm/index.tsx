@@ -3,9 +3,10 @@ import { Cycles } from '../Cycles';
 import { DefaultButton } from '../DefaultButton';
 import { PlayCircleIcon } from 'lucide-react';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { useState } from 'react';
 
 export function MainForm() {
-  const { state, setState } = useTaskContext();
+  const [taskName, setTaskName] = useState('');
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,6 +22,8 @@ export function MainForm() {
           labelText='Task'
           title='TITULO'
           placeholder='Digite algo'
+          value={taskName}
+          onChange={event => setTaskName(event.target.value)}
         />
       </div>
       <div className='formRow'>
