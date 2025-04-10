@@ -63,6 +63,7 @@ export function MainForm() {
           title='TITULO'
           placeholder='Digite algo'
           ref={taskNameInput}
+          disabled={!!state.activeTask}
         />
       </div>
       <div className='formRow'>
