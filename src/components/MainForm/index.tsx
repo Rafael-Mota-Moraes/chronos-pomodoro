@@ -1,7 +1,7 @@
 import { DefaultInput } from '../DefaultInput';
 import { Cycles } from '../Cycles';
 import { DefaultButton } from '../DefaultButton';
-import { PlayCircleIcon } from 'lucide-react';
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import { useRef } from 'react';
 import { TaskModel } from '../../models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
@@ -75,7 +75,22 @@ export function MainForm() {
         </div>
       )}
       <div className='formRow'>
-        <DefaultButton icon={<PlayCircleIcon />} />
+        {!state.activeTask ? (
+          <DefaultButton
+            aria-label='iniciar nova tarefa'
+            title='iniciar nova tarefa'
+            type='submit'
+            icon={<PlayCircleIcon />}
+          />
+        ) : (
+          <DefaultButton
+            aria-label='parar tarefa'
+            title='parar tarefa'
+            type='submit'
+            color='red'
+            icon={<StopCircleIcon />}
+          />
+        )}
       </div>
     </form>
   );
