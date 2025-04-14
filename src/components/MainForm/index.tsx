@@ -43,15 +43,6 @@ export function MainForm() {
     };
 
     dispatch({ type: TaskActionsTypes.START_TASK, payload: newTask });
-    const worker = TimerWorkerManager.getInstance();
-
-    worker.postMessage('FAVOR');
-    worker.postMessage('FALA_OI');
-    worker.postMessage('OUTRO');
-    worker.postMessage('FECHAR');
-    worker.onmessage(function (event) {
-      console.log('Principal recebeu: ', event.data);
-    });
   }
 
   function handleInterruptTask(
