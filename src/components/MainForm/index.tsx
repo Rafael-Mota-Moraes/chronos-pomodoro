@@ -9,7 +9,7 @@ import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
 import { TaskActionsTypes } from '../../contexts/TaskContext/taskActions';
 import { Tips } from '../Tips';
-import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
+import { showMessage } from '../../adapters/showMessage';
 
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -22,13 +22,14 @@ export function MainForm() {
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    showMessage.dismiss();
 
     if (taskNameInput.current === null) return;
 
     const taskName = taskNameInput.current.value.trim();
 
     if (!taskName) {
-      alert('Tarefa não pode estar em branco');
+      showMessage.warning('Tarefa não pode estar em branco');
       return;
     }
 
@@ -43,12 +44,15 @@ export function MainForm() {
     };
 
     dispatch({ type: TaskActionsTypes.START_TASK, payload: newTask });
+    showMessage.success('Tarefa iniciada com sucesso!');
   }
 
   function handleInterruptTask(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
+    showMessage.dismiss();
     event.preventDefault();
+    showMessage.error('Tarefa interrompida');
     dispatch({ type: TaskActionsTypes.INTERRUPT_TASK });
   }
 
