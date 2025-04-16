@@ -17,7 +17,6 @@ self.onmessage = function (event) {
 
     const now = Date.now();
     countDownSeconds = Math.floor((endDate - now) / 1000);
-    console.log(countDownSeconds);
 
     setTimeout(tick, 1000);
   }
