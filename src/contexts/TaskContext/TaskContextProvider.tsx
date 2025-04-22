@@ -13,7 +13,7 @@ type TaskContextProviderProps = {
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
   const [state, dispatch] = useReducer(taskReducer, initialTaskState, () => {
-    const storageState = localStorage.getItem('state') || null;
+    const storageState = localStorage.getItem('state');
 
     if (storageState === null) return initialTaskState;
 
@@ -41,7 +41,6 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
       dispatch({
         type: TaskActionsTypes.COMPLETE_TASK,
       });
-
       worker.terminate();
     } else {
       dispatch({
@@ -53,6 +52,7 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
 
   useEffect(() => {
     localStorage.setItem('state', JSON.stringify(state));
+
     if (!state.activeTask) {
       worker.terminate();
     }
@@ -64,8 +64,7 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
 
   useEffect(() => {
     if (state.activeTask && playBeepRef.current === null) {
-      console.log('carregando audio 123c');
-      playBeepRef.current = loadBeep;
+      playBeepRef.current = loadBeep();
     } else {
       playBeepRef.current = null;
     }
