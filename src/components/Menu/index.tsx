@@ -50,7 +50,7 @@ export function Menu() {
       </RouterLink>
       <RouterLink
         className={styles.menuLink}
-        href='#'
+        href='/history'
         aria-label='ver histórico'
         title='ver histórico'
       >
