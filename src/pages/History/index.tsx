@@ -28,6 +28,10 @@ export function History() {
   );
 
   useEffect(() => {
+    document.title = 'Histórico';
+  }, []);
+
+  useEffect(() => {
     setSortTaskOptions(prevState => ({
       ...prevState,
       tasks: sortTasks({
